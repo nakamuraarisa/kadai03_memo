@@ -1,4 +1,4 @@
-    // トップスを押した場合
+// トップスを押した場合
     $("#t1,#t2,#t3,#t4,#t5").on("click",function(){
         // 1.乱数(1-5)
         const b = Math.ceil(Math.random()*5);
@@ -47,7 +47,7 @@
     
     });
 
-    // ボトムスを押した場合
+// ボトムスを押した場合
     $("#b1,#b2,#b3,#b4,#b5").on("click",function(){
         // 1.乱数(1-5)
         const t = Math.ceil(Math.random()*5);
@@ -96,7 +96,7 @@
     
     });
 
-    // 小物を押した場合
+// 小物を押した場合
     $("#a1,#a2,#a3,#a4,#a5").on("click",function(){
         // 1.乱数(1-5)
         const t = Math.ceil(Math.random()*5);
@@ -146,9 +146,17 @@
     });
 
 
-    // 保存ボタンを押した場合
+// 保存ボタンを押した場合
     $(".button").on("click",function(){
-            const savedImage =$("#kekka1").attr("src");
-            localStorage.setItem("memo",savedImage);
-            alert("画像が保存されました");
-                });
+        const savedImage =$("viewt").attr("src");
+        localStorage.setItem("memo",savedImage);
+        alert("画像が保存されました");
+    });
+
+// 保存した画像を見るボタンを押した場合
+    $(".button2").on("click",function(){
+        if(localStorage.getItem("memo")){
+        const savedImage =localStorage.getItem("memo");
+        $("#kekka1").html(savedImage)
+        }
+    })
