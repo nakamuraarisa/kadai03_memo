@@ -1,11 +1,13 @@
+let viewt = "";
+let viewb = "";
+let viewa = "";
+
 // トップスを押した場合
     $("#t1,#t2,#t3,#t4,#t5").on("click",function(){
         // 1.乱数(1-5)
         const b = Math.ceil(Math.random()*5);
         const a = Math.ceil(Math.random()*5);
         // 2.if分岐処理
-        let viewb = "";
-        let viewa = "";
         if( b == 1 ){
             viewb = '<img src="img/b1.jpg">';
         }
@@ -38,9 +40,10 @@
         }
 
         // 3.クリックした画像を表示（トップス）
-        const viewt = $(this).children().attr("src")
+        const viewt = $(this).children('img').attr('src');
 
         // 4.表示
+        console.log(viewt,"viewt")
         $("#kekka1").html(`<img src="${viewt}">`);
         $("#kekka2").html(viewb);
         $("#kekka3").html(viewa);
@@ -53,8 +56,6 @@
         const t = Math.ceil(Math.random()*5);
         const a = Math.ceil(Math.random()*5);
         // 2.if分岐処理
-        let viewt = "";
-        let viewa = "";
         if( t == 1 ){
             viewt = '<img src="img/t1.jpg">';
         }
@@ -87,7 +88,7 @@
         }
 
         // 3.クリックした画像を表示（ボトムス）
-        const viewb = $(this).children().attr("src")
+        const viewb = $(this).children('img').attr('src');
 
         // 4.表示
         $("#kekka1").html(viewt);
@@ -102,8 +103,6 @@
         const t = Math.ceil(Math.random()*5);
         const b = Math.ceil(Math.random()*5);
         // 2.if分岐処理
-        let viewt = "";
-        let viewb = "";
         if( t == 1 ){
             viewt = '<img src="img/t1.jpg">';
         }
@@ -136,7 +135,7 @@
         }
 
         // 3.クリックした画像を表示（小物）
-        const viewa = $(this).children().attr("src")
+        const viewa = $(this).children('img').attr('src');
 
         // 4.表示
         $("#kekka1").html(viewt);
@@ -147,16 +146,48 @@
 
 
 // 保存ボタンを押した場合
+
+    // トップスを保存
     $(".button").on("click",function(){
-        const savedImage =$("viewt").attr("src");
+        const savedImage = $("#kekka1").html();
         localStorage.setItem("memo",savedImage);
+    });
+    
+    // ボトムスを保存
+    $(".button").on("click",function(){
+        const savedImage = $("#kekka2").html();
+        localStorage.setItem("memo2",savedImage);
+    });
+
+    // 小物を保存
+    $(".button").on("click",function(){
+        const savedImage = $("#kekka3").html();
+        localStorage.setItem("memo3",savedImage);
         alert("画像が保存されました");
     });
 
-// 保存した画像を見るボタンを押した場合
+// 保存したコーディネートを見るボタンを押した場合
+
+    // 保存したトップスを表示
     $(".button2").on("click",function(){
         if(localStorage.getItem("memo")){
         const savedImage =localStorage.getItem("memo");
         $("#kekka1").html(savedImage)
+        }
+    })
+
+    // 保存したボトムスを表示
+    $(".button2").on("click",function(){
+        if(localStorage.getItem("memo2")){
+        const savedImage =localStorage.getItem("memo2");
+        $("#kekka2").html(savedImage)
+        }
+    })
+
+    // 保存した小物を表示
+    $(".button2").on("click",function(){
+        if(localStorage.getItem("memo3")){
+        const savedImage =localStorage.getItem("memo3");
+        $("#kekka3").html(savedImage)
         }
     })
